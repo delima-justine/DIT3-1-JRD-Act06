@@ -34,7 +34,7 @@ class MainActivity : AppCompatActivity() {
     fun getWeather(city: String, apiKey: String) {
         val countryElement = findViewById<TextView>(R.id.countryName)
         val temperatureElement = findViewById<TextView>(R.id.temperatureElement)
-        val fahrenheitElement = findViewById<TextView>(R.id.fahrenheitElement)
+        val feelsLikeElement = findViewById<TextView>(R.id.feelsLikeElement)
         val descriptionElement = findViewById<TextView>(R.id.description)
 
         CoroutineScope(Dispatchers.IO).launch {
@@ -46,16 +46,16 @@ class MainActivity : AppCompatActivity() {
                 if(geo.isNotEmpty()) {
                     val lat = geo[0].lat
                     val lon = geo[0].lon
-                    val country = geo[0].country
+                    val cityName = geo[0].name
 
                     val weather = RetrofitClient.service.getWeather(lat, lon, apiKey)
                     println("Weather response: $weather")
 
                     withContext(Dispatchers.Main) {
-                        countryElement.text = country
+                        countryElement.text = cityName
                         temperatureElement.text = "Temperature: ${weather.main.temp}°C"
-                        fahrenheitElement.text = "Feels like: ${weather.main.feels_like}°F"
-                        descriptionElement.text = "Description: ${weather.weather[0].description}"
+                        feelsLikeElement.text = "Feels like: ${weather.main.feels_like}°F"
+                        descriptionElement.text = "${weather.weather[0].description}"
                     }
                 } else {
                     println("Geo response is empty")
