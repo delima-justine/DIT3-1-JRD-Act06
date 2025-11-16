@@ -26,19 +26,20 @@
         android:layout_width="155dp"
         android:layout_height="27dp"
         android:layout_marginTop="20dp"
-        android:text="Temperature: "
-        android:textAlignment="viewStart"
+        android:text="Temperature"
+        android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/countryName" />
 
     <TextView
-        android:id="@+id/fahrenheitElement"
+        android:id="@+id/feelsLikeElement"
         android:layout_width="152dp"
         android:layout_height="23dp"
         android:layout_marginTop="16dp"
-        android:text="Fahrenheit:"
+        android:text="Feels Like"
+        android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
@@ -48,7 +49,7 @@
 
     <TextView
         android:id="@+id/description"
-        android:layout_width="275dp"
+        android:layout_width="255dp"
         android:layout_height="60dp"
         android:text="This is a simple API app that fetches weather from Manila. Click the button to display data"
         android:textAlignment="center"
@@ -56,7 +57,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fahrenheitElement"
+        app:layout_constraintTop_toBottomOf="@+id/feelsLikeElement"
         app:layout_constraintVertical_bias="0.071" />
 
     <Button
