@@ -15,6 +15,7 @@ interface OpenWeatherService {
     ): List<GeoResponse>
 
     // Weather API here
+    @GET("data/2.5/weather")
     suspend fun getWeather(
         @Query("lat") lat: Double,
         @Query("lon") lon: Double,

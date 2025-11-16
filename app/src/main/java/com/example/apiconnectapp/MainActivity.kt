@@ -1,6 +1,8 @@
 package com.example.apiconnectapp
 
 import android.os.Bundle
+import android.widget.Button
+import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -10,7 +12,6 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import okhttp3.Dispatcher
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -22,13 +23,25 @@ class MainActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+
+        val fetchBtn = findViewById<Button>(R.id.fetchDataBtn)
+        fetchBtn.setOnClickListener {
+            val city = "Manila, PH"
+            getWeather(city, "32f5c3218f266aa146cfbc916e5673f5")
+        }
     }
 
     fun getWeather(city: String, apiKey: String) {
+        val countryElement = findViewById<TextView>(R.id.countryName)
+        val temperatureElement = findViewById<TextView>(R.id.temperatureElement)
+        val fahrenheitElement = findViewById<TextView>(R.id.fahrenheitElement)
+        val descriptionElement = findViewById<TextView>(R.id.description)
+
         CoroutineScope(Dispatchers.IO).launch {
             try {
                 // Get Coordinates
                 val geo = RetrofitClient.service.getCoordinates(city, 1, apiKey)
+                println("Geo response: $geo")
 
                 if(geo.isNotEmpty()) {
                     val lat = geo[0].lat
@@ -36,18 +49,20 @@ class MainActivity : AppCompatActivity() {
                     val country = geo[0].country
 
                     val weather = RetrofitClient.service.getWeather(lat, lon, apiKey)
+                    println("Weather response: $weather")
 
                     withContext(Dispatchers.Main) {
-                        println("City: ${weather.name}")
-                        println("Country: $country")
-                        println("Temperature: ${weather.main.temp}°C")
-                        println("Feels like: ${weather.main.feels_like}°C")
-                        println("Humidity: ${weather.main.humidity}%")
-                        println("Description: ${weather.weather[0].description}")
+                        countryElement.text = country
+                        temperatureElement.text = "Temperature: ${weather.main.temp}°C"
+                        fahrenheitElement.text = "Feels like: ${weather.main.feels_like}°F"
+                        descriptionElement.text = "Description: ${weather.weather[0].description}"
                     }
+                } else {
+                    println("Geo response is empty")
                 }
             } catch (e: Exception) {
                 e.printStackTrace()
+                println("Error: ${e.message}")
             }
         }
     }

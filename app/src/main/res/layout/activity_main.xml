@@ -8,11 +8,67 @@
     tools:context=".MainActivity">
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
+        android:id="@+id/countryName"
+        android:layout_width="163dp"
+        android:layout_height="38dp"
+        android:fontFamily="@font/inter_bold"
+        android:text="Country"
+        android:textAlignment="center"
+        android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.173" />
+
+    <TextView
+        android:id="@+id/temperatureElement"
+        android:layout_width="155dp"
+        android:layout_height="27dp"
+        android:layout_marginTop="20dp"
+        android:text="Temperature: "
+        android:textAlignment="viewStart"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/countryName" />
+
+    <TextView
+        android:id="@+id/fahrenheitElement"
+        android:layout_width="152dp"
+        android:layout_height="23dp"
+        android:layout_marginTop="16dp"
+        android:text="Fahrenheit:"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/temperatureElement"
+        app:layout_constraintVertical_bias="0.024" />
+
+    <TextView
+        android:id="@+id/description"
+        android:layout_width="275dp"
+        android:layout_height="60dp"
+        android:text="This is a simple API app that fetches weather from Manila. Click the button to display data"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fahrenheitElement"
+        app:layout_constraintVertical_bias="0.071" />
+
+    <Button
+        android:id="@+id/fetchDataBtn"
+        android:layout_width="275dp"
+        android:layout_height="48dp"
+        android:text="Get Data"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/description"
+        app:layout_constraintVertical_bias="0.106" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
